@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Variables
 IMAGE_NAME="devops-guvi"
 TAG="latest"
 CONTAINER_NAME="devops-container"

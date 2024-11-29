@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Variables
 IMAGE_NAME="afrid1296/devops-guvi"
 TAG="latest"
 DEV_REPO="afrid1296/devops-guvi"
