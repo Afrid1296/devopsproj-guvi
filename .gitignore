@@ -1,0 +1,11 @@
+*.log
+npm-debug.log*
+
+node_modules/
+
+build/
+
+.DS_Store
+Thumbs.db
+
+docker-compose.override.yml
