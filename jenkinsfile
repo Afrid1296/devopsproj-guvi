@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/afrid1296/devopsproj-guvi.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh './build.sh'
+                }
+            }
+        }
+        stage('Deploy Container') {
+            steps {
+                script {
+                    sh './deploy.sh'
+                }
+            }
+        }
+    }
+}
