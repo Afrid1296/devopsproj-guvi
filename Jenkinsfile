@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_DEV_REPO = "afrid1296/devops-guvi:dev"
         DOCKER_PROD_REPO = "afrid1296/devops-guvi:prod"
-        DOCKER_CREDENTIALS_ID = "docker-credentials"  // Add Docker credentials ID here
+        DOCKER_CREDENTIALS_ID = "docker-hub"  // Add Docker credentials ID here
     }
 
     stages {
