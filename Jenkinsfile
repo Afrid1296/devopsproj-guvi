@@ -43,7 +43,7 @@ pipeline {
         stage('Push to Prod Repo') {
             when {
                 allOf {
-                    branch 'master'
+                    branch 'main'
                     changeRequest() // This ensures the step runs only when it's a pull request or merge
                 }
             }
@@ -62,7 +62,7 @@ pipeline {
         // Deployment stage to deploy the image to your production environment
         stage('Deploy to Production') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
