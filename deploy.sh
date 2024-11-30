@@ -1,20 +1,11 @@
 #!/bin/bash
 
-IMAGE_NAME="devops-guvi"
-TAG="latest"
 CONTAINER_NAME="devops-container"
-PORT="3000"
+IMAGE_NAME="afrid1296/devops-guvi:latest"
 
 echo "Stopping and removing any existing container: $CONTAINER_NAME"
-docker stop $CONTAINER_NAME 2>/dev/null && docker rm $CONTAINER_NAME 2>/dev/null
+docker stop $CONTAINER_NAME || true
+docker rm $CONTAINER_NAME || true
 
 echo "Deploying the container: $CONTAINER_NAME"
-docker run -d -p $PORT:80 --name $CONTAINER_NAME $IMAGE_NAME:$TAG
-
-if [ $? -eq 0 ]; then
-    echo "Container $CONTAINER_NAME deployed successfully and is running on port $PORT."
-else
-    echo "Failed to deploy the container."
-    exit 1
-fi
-
+docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME
