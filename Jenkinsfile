@@ -42,7 +42,10 @@ pipeline {
 
         stage('Push to Prod Repo') {
             when {
-                branch 'master'
+                allOf {
+                    branch 'master'
+                    changeRequest() // This ensures the step runs only when it's a pull request or merge
+                }
             }
             steps {
                 script {
@@ -52,6 +55,20 @@ pipeline {
                     withDockerRegistry(credentialsId: env.DOCKER_CREDENTIALS_ID) {
                         sh "docker push ${env.DOCKER_PROD_REPO}"
                     }
+                }
+            }
+        }
+
+        // Deployment stage to deploy the image to your production environment
+        stage('Deploy to Production') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    // Assuming deploy.sh deploys the Docker image to your prod environment
+                    sh 'chmod +x deploy.sh'
+                    sh './deploy.sh'  // Deploy the image to production
                 }
             }
         }
