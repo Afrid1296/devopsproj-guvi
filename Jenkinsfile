@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_DEV_REPO = "afrid1296/devops-guvi:dev"
         DOCKER_PROD_REPO = "afrid1296/devops-guvi:prod"
-        DOCKER_CREDENTIALS_ID = "docker-hub"  // Add Docker credentials ID here
+        DOCKER_CREDENTIALS_ID = "docker-hub"
     }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
             when {
                 allOf {
                     branch 'main'
-                    changeRequest() // This ensures the step runs only when it's a pull request or merge
+                    changeRequest() 
                 }
             }
             steps {
@@ -59,14 +59,12 @@ pipeline {
             }
         }
 
-        // Deployment stage to deploy the image to your production environment
         stage('Deploy to Production') {
             when {
                 branch 'main'
             }
             steps {
                 script {
-                    // Assuming deploy.sh deploys the Docker image to your prod environment
                     sh 'chmod +x deploy.sh'
                     sh './deploy.sh'  // Deploy the image to production
                 }
